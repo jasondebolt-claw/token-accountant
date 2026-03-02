@@ -8,27 +8,30 @@ Every single token used (input and output) must be tracked in the token-accounta
 Each day's file: `daily/YYYY-MM-DD.md`
 
 ### Table 1: Exchange Log
-Track every prompt and response separately with exact timestamps.
+Track every prompt, response, AND heartbeat task with exact timestamps.
 
 **Columns:**
 | # | Timestamp | Model | Direction | Input Tokens | Output Tokens | Cost | Description |
 |---|---|---|---|---|---|---|---|
 | 1 | 2026-03-02 08:15 AM | haiku | user-prompt | 2,100 | 0 | $0.002 | Asked to run x-list-ai script with top 5 posts |
 | 2 | 2026-03-02 08:16 AM | haiku | lexus-response | 45,000 | 8,500 | $0.065 | Ran pipeline and showed results with JSON output |
+| 3 | 2026-03-02 09:00 AM | haiku | heartbeat | 3,000 | 800 | $0.005 | Morning health metrics check and calendar verification |
 
 **Rules:**
 - One row per user prompt (has input tokens, 0 output)
 - One row per Lexus response (has input tokens for context, output tokens for response)
+- One row per heartbeat task (has input + output tokens - they consume tokens too!)
 - **Timestamp:** YYYY-MM-DD HH:MM AM/PM (Bangkok time, GMT+7)
 - **Model:** haiku, sonnet, or opus
-- **Direction:** "user-prompt" or "lexus-response"
+- **Direction:** "user-prompt", "lexus-response", or "heartbeat"
 - **Input Tokens:** Token count of that message
-- **Output Tokens:** 0 for user prompts; token count for Lexus responses
+- **Output Tokens:** 0 for user prompts; token count for Lexus responses; token count for heartbeat tasks
 - **Cost:** Calculate using rates from MEMORY.md:
   - Haiku: (input × $0.000001) + (output × $0.000005)
   - Sonnet: (input × $0.000003) + (output × $0.000015)
   - Opus: (input × $0.000005) + (output × $0.000025)
-- **Description:** One concise sentence describing what was asked or responded
+- **Description:** One concise sentence describing what was asked, responded, or checked
+- **Heartbeat tasks to track:** Calendar checks, health metric checks, credential scans, security audits, journal sync, token accountant sync, agent logs, config sync
 
 ### Table 2: Sub-Agent Processes
 Track every spawned sub-agent.

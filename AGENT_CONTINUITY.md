@@ -11,8 +11,9 @@ When you wake up, you need to:
 1. **Check today's date** (Bangkok time, GMT+7)
 2. **Open the daily ledger** → `/tmp/token-accountant/daily/YYYY-MM-DD.md`
 3. **Add every exchange** you have with Jason to that file
-4. **Track every token** (input + output) with cost and timestamp
-5. **At end of day (~11 PM Bangkok)**, commit and push
+4. **Add every heartbeat task** that consumes tokens (calendar checks, health checks, syncs, etc.)
+5. **Track every token** (input + output) with cost and timestamp
+6. **At end of day (~11 PM Bangkok)**, commit and push
 
 ## Format
 
