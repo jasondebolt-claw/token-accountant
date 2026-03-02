@@ -10,10 +10,17 @@ When you wake up, you need to:
 
 1. **Check today's date** (Bangkok time, GMT+7)
 2. **Open the daily ledger** → `/tmp/token-accountant/daily/YYYY-MM-DD.md`
-3. **Add every exchange** you have with Jason to that file
+3. **After EVERY exchange** (user prompt or your response):
+   - Add a new row to Exchange Log
+   - Calculate cost using rates from MEMORY.md
+   - Commit and push to GitHub immediately
 4. **Add every heartbeat task** that consumes tokens (calendar checks, health checks, syncs, etc.)
-5. **Track every token** (input + output) with cost and timestamp
-6. **At end of day (~11 PM Bangkok)**, commit and push
+   - Same process: add row, calculate cost, commit and push
+5. **At end of day (~11 PM Bangkok)**:
+   - Update Daily Totals section
+   - Final commit with EOD summary
+   - Push to GitHub
+6. **Next day**: Create new file and continue
 
 ## Format
 

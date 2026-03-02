@@ -92,17 +92,28 @@ cost = (45000 × $0.000001) + (8500 × $0.000005)
      = $0.0875 ≈ $0.088
 ```
 
-## Daily Sync Process
+## Real-Time Sync Process
 
-1. Create `daily/YYYY-MM-DD.md` or update existing
-2. Add all exchanges from today:
-   - User prompts (one row each)
-   - Lexus responses (one row each)
-   - Sub-agent spawns (separate table)
-3. Calculate costs for each row using rates from MEMORY.md
-4. Sum totals at bottom
-5. Commit and push to GitHub
-6. Update `memory/heartbeat-state.json` with last sync time
+**After every exchange (user prompt or Lexus response):**
+1. Add new row to `daily/YYYY-MM-DD.md` Exchange Log
+   - Timestamp, Model, Direction, Input/Output Tokens, Cost, Description
+2. Calculate cost using rates from MEMORY.md
+3. Immediately commit and push to GitHub
+   - Commit message: `[HH:MM] exchange N: [one-line description]`
+   - Example: `[08:15] exchange 1: user asked for x-list-ai run`
+4. Continue until end of day (~11 PM Bangkok)
+
+**At end of day (~11 PM Bangkok):**
+1. Update Daily Totals section
+2. Final commit: `[EOD] Daily total: XXX tokens, $X.XX`
+3. Push to GitHub
+4. Create new file for next day: `daily/YYYY-MM-DD.md`
+
+**Why real-time?**
+- Prevent data loss if session terminates (context window limit)
+- Every transaction backed up immediately
+- No risk of losing a day's worth of data
+- Frequency: After EVERY exchange (min 2x per user interaction)
 
 ## Who Tracks What
 
